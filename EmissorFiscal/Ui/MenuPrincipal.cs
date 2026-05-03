@@ -2,8 +2,6 @@
 {
     class MenuPrincipal
     {
-        TelaCliente telaCliente = new TelaCliente();
-        TelaNFSe telaNFSe = new TelaNFSe();
         public void Menu()
         {
             Console.Clear();
@@ -26,8 +24,8 @@
             switch (opcao)
             {
                 case 1:
-                    telaCliente.ColetarDadosCliente();
-                    telaNFSe.ColetarDadosServico();
+                    TelaNFSe telaNFSe = new TelaNFSe();
+                    telaNFSe.Executar();
                     break;
                 case 2:
                     //"Ainda vou implementar...";

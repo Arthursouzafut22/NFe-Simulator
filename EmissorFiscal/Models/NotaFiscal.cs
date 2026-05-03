@@ -5,11 +5,9 @@ namespace EmissorFiscal.Models
     {
         private static int _contador = 0;
         public int NumeroNota { get; set; }
-        public static DateTime DataEmissao { get; set; }
+        public DateTime DataEmissao { get; set; }
         public Cliente Cliente { get; set; }
         public decimal ValorTotal { get; set; }
-        public abstract void EmitirNota();
-
         public NotaFiscal() { }
         public NotaFiscal(decimal valorTotal)
         {
@@ -17,5 +15,6 @@ namespace EmissorFiscal.Models
             NumeroNota = ++_contador;
             ValorTotal = valorTotal;
         }
+        public abstract void EmitirNota();
     }
 }

@@ -6,8 +6,9 @@ namespace EmissorFiscal.Models
     {
         public Guid Id { get; private set; }
         public TipoNota Tipo { get; set; }
-        public Cliente Cliente { get; set; }
         public Servico Servico { get; set; }
+
+        public NFSe() {}
         public NFSe(decimal valorTotal) : base(valorTotal)
         {
             Id = Guid.NewGuid();
@@ -26,15 +27,17 @@ namespace EmissorFiscal.Models
 
         public override void EmitirNota()
         {
-            Console.Write("Pensando na implementeção ainda..");
-
+            ToString();
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
 
+            sb.AppendLine();
             sb.AppendLine("========== NOTA FISCAL DE SERVIÇO ==========");
+            sb.AppendLine($"Nº: {NumeroNota}    Data: {DataEmissao:dd/MM/yyyy HH:mm}");
+            sb.AppendLine($"ID: {Id}");
 
             sb.AppendLine("\n--- DADOS DO TOMADOR ---");
             sb.AppendLine($"Nome:        {Cliente.Nome}");
@@ -49,10 +52,10 @@ namespace EmissorFiscal.Models
             sb.AppendLine("\n--- DADOS DO SERVIÇO ---");
             sb.AppendLine($"Descrição:    {Servico.Descricao}");
             sb.AppendLine($"Alíquota ISS: {Servico.AliquotaIss}%");
-            sb.AppendLine($"ISS Retido Fonte:{(Servico.IssRetidoFonte ? "SIM" : "NÃO")}");
+            sb.AppendLine($"ISS Retido Fonte: {(Servico.IssRetidoFonte ? "SIM" : "NÃO")}");
             sb.AppendLine($"CNAE:             {Servico.Cnae}");
             sb.AppendLine($"Item Lista LC116: {Servico.ItemListaServicoLC116}");
-            sb.AppendLine($"Cód. Mun. Serviço:{Servico.CodigoServicoMunicipio}");
+            sb.AppendLine($"Cód. Mun. Serviço: {Servico.CodigoServicoMunicipio}");
             sb.AppendLine($"PIS/COFINS:   {Servico.ValorPis:C} / {Servico.ValorCofins:C}");
 
             sb.AppendLine("\n--- VALORES TOTAIS ---");

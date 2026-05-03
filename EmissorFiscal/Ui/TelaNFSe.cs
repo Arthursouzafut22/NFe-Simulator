@@ -1,4 +1,5 @@
 ﻿using EmissorFiscal.Models;
+using EmissorFiscal.Utils;
 
 namespace EmissorFiscal.Ui
 {
@@ -7,13 +8,16 @@ namespace EmissorFiscal.Ui
         public Servico Servico { get; set; }
         public NFSe NFSe { get; set; }
 
-        public void ColetarDadosServico()
+        public void Executar()
         {
+            TelaCliente telaCliente = new TelaCliente();
+            telaCliente.ColetarDadosCliente();
+
             Console.WriteLine("");
             Console.WriteLine("...Dados da atividade prestada...");
 
             Console.Write("Digite a descrição do serviço: ");
-            string descricao = Console.ReadLine();
+            string descricao = Validador.LerCampoObrigatorio();
 
             Console.Write("Digite a alíquota de ISS sobre o serviço: ");
             double aliquotaIss = double.Parse(Console.ReadLine());
@@ -24,19 +28,19 @@ namespace EmissorFiscal.Ui
             bool issRetidoFonte = valorIssRetido == 'S';
 
             Console.Write("Digite o código de tributação: ");
-            string codigoServicoMunicipio = Console.ReadLine();
+            string codigoServicoMunicipio = Validador.LerCampoObrigatorio(); ;
 
             Console.Write("Digite o item da lista de serviços (LC 116): ");
-            string itemListaServicoLC116 = Console.ReadLine();
+            string itemListaServicoLC116 = Validador.LerCampoObrigatorio();
 
             Console.Write("Digite o CNAE: ");
-            string cnae = Console.ReadLine();
+            string cnae = Validador.LerCampoObrigatorio();
 
             Console.Write("Digite o código NBS: ");
-            string codigoNbs = Console.ReadLine();
+            string codigoNbs = Validador.LerCampoObrigatorio();
 
             Console.Write("Digite o município de prestação do serviço: ");
-            string municipioPrestacaoServico = Console.ReadLine();
+            string municipioPrestacaoServico = Validador.LerCampoObrigatorio();
 
             Console.Write("Digite o valor do PIS: ");
             decimal valorPis = decimal.Parse(Console.ReadLine());
@@ -46,7 +50,6 @@ namespace EmissorFiscal.Ui
 
             Console.Write("Digite o valor da prestação do serviço: ");
             decimal valorTotal = decimal.Parse(Console.ReadLine());
-
 
             Servico = new Servico(
                 descricao,
@@ -61,8 +64,11 @@ namespace EmissorFiscal.Ui
                 valorConfins
             );
 
-            NFSe = new NFSe(valorTotal);
+            NFSe nota = new NFSe(valorTotal);
+            nota.Cliente = telaCliente.Cliente;
+            nota.Servico = Servico;
 
+            Console.WriteLine(nota);
         }
     }
 }

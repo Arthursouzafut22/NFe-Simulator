@@ -1,5 +1,6 @@
 ﻿using EmissorFiscal.Enums;
 using EmissorFiscal.Models;
+using EmissorFiscal.Utils;
 
 namespace EmissorFiscal.Ui
 {
@@ -10,13 +11,13 @@ namespace EmissorFiscal.Ui
         public void ColetarDadosCliente()
         {
             Console.Write("Digite o nome do tomador/cliente: ");
-            string nome = Console.ReadLine();
+            string nome = Validador.LerCampoObrigatorio();
 
             Console.Write("Digite o e-mail do tomador/cliente: ");
-            string email = Console.ReadLine();
+            string email = Validador.ValidarEmail();
 
             Console.Write("Pessoa jurídica ou física (F/J)?: ");
-            string tipo = Console.ReadLine().ToUpper();
+            string tipo = Validador.LerCampoObrigatorio().ToUpper();
 
             TipoPessoa tipoPessoa = tipo == "F"
                 ? TipoPessoa.Fisica
@@ -28,31 +29,31 @@ namespace EmissorFiscal.Ui
             {
                 case TipoPessoa.Fisica:
                     Console.Write("Digite o CPF do tomador/cliente: ");
-                    cpfCnpj = Console.ReadLine();
+                    cpfCnpj = Validador.LerCampoObrigatorio();
                     break;
 
                 case TipoPessoa.Juridica:
                     Console.Write("Digite o CNPJ do tomador/cliente: ");
-                    cpfCnpj = Console.ReadLine();
+                    cpfCnpj = Validador.LerCampoObrigatorio();
                     break;
             }
 
             Console.WriteLine("...Endereço do tomador/cliente...");
 
             Console.Write("Digite a UF: ");
-            string uf = Console.ReadLine();
+            string uf = Validador.LerCampoObrigatorio();
 
             Console.Write("Digite a cidade: ");
-            string cidade = Console.ReadLine();
+            string cidade = Validador.LerCampoObrigatorio();
 
             Console.Write("Digite o bairro: ");
-            string bairro = Console.ReadLine();
+            string bairro = Validador.LerCampoObrigatorio();
 
             Console.Write("Digite o logradouro: ");
-            string logradouro = Console.ReadLine();
+            string logradouro = Validador.LerCampoObrigatorio();
 
             Console.Write("Digite o CEP: ");
-            string cep = Console.ReadLine();
+            string cep = Validador.LerCampoObrigatorio();
 
             this.Cliente = new Cliente(
                 nome,
