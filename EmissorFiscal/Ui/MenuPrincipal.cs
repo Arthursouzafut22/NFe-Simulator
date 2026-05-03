@@ -2,6 +2,8 @@
 {
     class MenuPrincipal
     {
+        TelaCliente telaCliente = new TelaCliente();
+        TelaNFSe telaNFSe = new TelaNFSe();
         public void Menu()
         {
             Console.Clear();
@@ -15,15 +17,29 @@
             Console.WriteLine("║ [5] Sair                        ║");
             Console.WriteLine("╚══════════════════════════════════╝");
 
-            if(!int.TryParse(Console.ReadLine(), out int opcao))
+            if (!int.TryParse(Console.ReadLine(), out int opcao))
             {
                 Console.WriteLine("Opção inválida!");
                 return;
             }
 
-            switch (opcao) 
+            switch (opcao)
             {
                 case 1:
+                    telaCliente.ColetarDadosCliente();
+                    telaNFSe.ColetarDadosServico();
+                    break;
+                case 2:
+                    //"Ainda vou implementar...";
+                    break;
+                case 3:
+                    //"Ainda vou implementar...";
+                    break;
+                case 4:
+                    //"Ainda vou implementar...";
+                    break;
+                case 5:
+                    //"Ainda vou implementar...";
                     break;
             }
         }

@@ -10,11 +10,14 @@
         public string Cnae { get; set; }
         public string CodigoNbs { get; set; }
         public string MunicipioPrestacaoServico { get; set; }
+        public decimal ValorPis { get; set; }
+        public decimal ValorCofins { get; set; }
 
 
         public Servico(string descricao, double aliquotaIss, bool issRetidoFonte,
             string codigoServicoMunicipio, string itemListaServicoLC116,
-            string cnae, string municipioPrestacaoServico, string codigoNbs)
+            string cnae, string municipioPrestacaoServico, string codigoNbs,
+            decimal valorPis, decimal valorCofins)
         {
             Descricao = descricao;
             AliquotaIss = aliquotaIss;
@@ -24,6 +27,8 @@
             Cnae = cnae;
             MunicipioPrestacaoServico = municipioPrestacaoServico;
             CodigoNbs = codigoNbs;
+            ValorPis = valorPis;
+            ValorCofins = valorCofins;
         }
     }
 }

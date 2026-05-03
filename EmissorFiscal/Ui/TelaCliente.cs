@@ -5,19 +5,24 @@ namespace EmissorFiscal.Ui
 {
     class TelaCliente
     {
-
         public Cliente Cliente { get; set; }
+
         public void ColetarDadosCliente()
         {
-            Console.Write("Digite Nome do tomador/cliente: ");
+            Console.Write("Digite o nome do tomador/cliente: ");
             string nome = Console.ReadLine();
-            Console.Write("Digite E-mail do tomador/cliente: ");
-            string email = Console.ReadLine();
-            Console.Write("Pessoa Juridica ou Fisica (F/J)?: ");
-            string tipo = Console.ReadLine().ToUpper();
-            TipoPessoa tipoPessoa = tipo == "F" ? TipoPessoa.Fisica : TipoPessoa.Juridica;
-            string? cpfCnpj = null;
 
+            Console.Write("Digite o e-mail do tomador/cliente: ");
+            string email = Console.ReadLine();
+
+            Console.Write("Pessoa jurídica ou física (F/J)?: ");
+            string tipo = Console.ReadLine().ToUpper();
+
+            TipoPessoa tipoPessoa = tipo == "F"
+                ? TipoPessoa.Fisica
+                : TipoPessoa.Juridica;
+
+            string? cpfCnpj = null;
 
             switch (tipoPessoa)
             {
@@ -33,17 +38,33 @@ namespace EmissorFiscal.Ui
             }
 
             Console.WriteLine("...Endereço do tomador/cliente...");
-            Console.Write("Digite o uf: ");
+
+            Console.Write("Digite a UF: ");
             string uf = Console.ReadLine();
+
             Console.Write("Digite a cidade: ");
             string cidade = Console.ReadLine();
+
             Console.Write("Digite o bairro: ");
             string bairro = Console.ReadLine();
+
             Console.Write("Digite o logradouro: ");
             string logradouro = Console.ReadLine();
-            Console.Write("Digite o cep: ");
+
+            Console.Write("Digite o CEP: ");
             string cep = Console.ReadLine();
-            this.Cliente = new Cliente(nome, email, tipoPessoa, cpfCnpj, uf, cidade, bairro, logradouro, cep);
+
+            this.Cliente = new Cliente(
+                nome,
+                email,
+                tipoPessoa,
+                cpfCnpj,
+                uf,
+                cidade,
+                bairro,
+                logradouro,
+                cep
+            );
         }
     }
 }

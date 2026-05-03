@@ -1,65 +1,64 @@
 ﻿using EmissorFiscal.Enums;
+using System.Text;
 namespace EmissorFiscal.Models
 {
     class NFSe : NotaFiscal
     {
         public Guid Id { get; private set; }
         public TipoNota Tipo { get; set; }
+        public Cliente Cliente { get; set; }
+
         public Servico Servico { get; set; }
 
-        public NFSe()
+        public NFSe(decimal valorTotal) : base(valorTotal)
         {
             Id = Guid.NewGuid();
+            Tipo = TipoNota.NFS_e;
         }
 
-        //public void MenuInformacoesNfseServico()
-        //{
-        //    Console.Write("Digite Nome do tomador: ");
-        //    string nome = Console.ReadLine();
-        //    Console.Write("Digite E-mail do tomador: ");
-        //    string email = Console.ReadLine();
-        //    Console.Write("Pessoa Jurdica ou Fisica (F/J)?: ");
-        //    string tipo = Console.ReadLine().ToUpper();
-        //    TipoPessoa tipoPessoa = tipo == "F" ? TipoPessoa.Fisica : TipoPessoa.Juridica;
-        //    string? cpfCnpj = null;
+        public decimal CalcularTotalPisCofins()
+        {
+            return Servico.ValorPis + Servico.ValorCofins;
+        }
 
-
-        //    switch (tipoPessoa)
-        //    {
-        //        case TipoPessoa.Fisica:
-        //            Console.Write("Digite o CPF do tomador: ");
-        //            cpfCnpj = Console.ReadLine();
-        //            break;
-
-        //        case TipoPessoa.Juridica:
-        //            Console.Write("Digite o CNPJ do tomador: ");
-        //            cpfCnpj = Console.ReadLine();
-        //            break;
-        //    }
-
-        //    Console.WriteLine("...Endereço do tomador...");
-        //    Console.Write("Digite o uf: ");
-        //    string uf = Console.ReadLine();
-        //    Console.Write("Digite a cidade: ");
-        //    string cidade = Console.ReadLine();
-        //    Console.Write("Digite o bairro: ");
-        //    string bairro = Console.ReadLine();
-        //    Console.Write("Digite o logradouro: ");
-        //    string logradouro = Console.ReadLine();
-        //    Console.Write("Digite o cep: ");
-        //    string cep = Console.ReadLine();
-        //    this.Cliente = new Cliente(nome, email, tipoPessoa, cpfCnpj, uf, cidade, bairro, logradouro, cep);
-        //}
-
+        public decimal CalcularValorLiquidoDaNota()
+        {
+            return ValorTotal - CalcularTotalPisCofins();
+        }
 
         public override void EmitirNota()
         {
-            Console.Write("Emitindo nota....");
+            Console.Write("Pensando na implementeção ainda..");
+
         }
 
         public override string ToString()
         {
-            return "";
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("========== NOTA FISCAL DE SERVIÇO ==========");
+
+            sb.AppendLine("\n--- DADOS DO TOMADOR ---");
+            sb.AppendLine($"Nome:        {Cliente.Nome}");
+            sb.AppendLine($"E-mail:      {Cliente.Email}");
+            sb.AppendLine($"Tipo Pessoa: {Cliente.TipoPessoa}");
+            sb.AppendLine($"CPF/CNPJ:    {Cliente.CpfCnpj}");
+
+            sb.AppendLine("\n--- ENDEREÇO ---");
+            sb.AppendLine($"{Cliente.Logradouro}, {Cliente.Bairro}");
+            sb.AppendLine($"{Cliente.Cidade} - {Cliente.Uf} | CEP: {Cliente.Cep}");
+
+            sb.AppendLine("\n--- DADOS DO SERVIÇO ---");
+            sb.AppendLine($"Descrição:    {Servico.Descricao}");
+            sb.AppendLine($"Alíquota ISS: {Servico.AliquotaIss}%");
+            sb.AppendLine($"PIS/COFINS:   {Servico.ValorPis:C} / {Servico.ValorCofins:C}");
+
+            sb.AppendLine("\n--- VALORES TOTAIS ---");
+            sb.AppendLine($"VALOR BRUTO:   {ValorTotal:C}");
+            sb.AppendLine($"VALOR LÍQUIDO: {CalcularValorLiquidoDaNota():C}");
+            sb.AppendLine("============================================");
+
+            return sb.ToString();
         }
     }
 }

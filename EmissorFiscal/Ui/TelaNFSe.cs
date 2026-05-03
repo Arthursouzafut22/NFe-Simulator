@@ -5,9 +5,11 @@ namespace EmissorFiscal.Ui
     internal class TelaNFSe
     {
         public Servico Servico { get; set; }
+        public NFSe NFSe { get; set; }
 
         public void ColetarDadosServico()
         {
+            Console.WriteLine("");
             Console.WriteLine("...Dados da atividade prestada...");
 
             Console.Write("Digite a descrição do serviço: ");
@@ -36,6 +38,16 @@ namespace EmissorFiscal.Ui
             Console.Write("Digite o município de prestação do serviço: ");
             string municipioPrestacaoServico = Console.ReadLine();
 
+            Console.Write("Digite o valor do PIS: ");
+            decimal valorPis = decimal.Parse(Console.ReadLine());
+
+            Console.Write("Digite o valor do COFINS: ");
+            decimal valorConfins = decimal.Parse(Console.ReadLine());
+
+            Console.Write("Digite o valor da prestação do serviço: ");
+            decimal valorTotal = decimal.Parse(Console.ReadLine());
+
+
             Servico = new Servico(
                 descricao,
                 aliquotaIss,
@@ -44,8 +56,13 @@ namespace EmissorFiscal.Ui
                 itemListaServicoLC116,
                 cnae,
                 codigoNbs,
-                municipioPrestacaoServico
+                municipioPrestacaoServico,
+                valorPis,
+                valorConfins
             );
+
+            NFSe = new NFSe(valorTotal);
+
         }
     }
 }
