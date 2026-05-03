@@ -15,7 +15,17 @@
             Console.WriteLine("║ [5] Sair                        ║");
             Console.WriteLine("╚══════════════════════════════════╝");
 
-            int opcao = int.Parse(Console.ReadLine());
+            if(!int.TryParse(Console.ReadLine(), out int opcao))
+            {
+                Console.WriteLine("Opção inválida!");
+                return;
+            }
+
+            switch (opcao) 
+            {
+                case 1:
+                    break;
+            }
         }
     }
 }

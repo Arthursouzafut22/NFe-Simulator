@@ -4,16 +4,17 @@
     {
         public string Descricao { get; set; }
         public double AliquotaIss { get; set; }
-        public string IssRetidoFonte { get; set; }
+        public bool IssRetidoFonte { get; set; }
         public string CodigoServicoMunicipio { get; set; }
         public string ItemListaServicoLC116 { get; set; }
         public string Cnae { get; set; }
+        public string CodigoNbs { get; set; }
         public string MunicipioPrestacaoServico { get; set; }
 
 
-        public Servico(string descricao, double aliquotaIss, string issRetidoFonte,
+        public Servico(string descricao, double aliquotaIss, bool issRetidoFonte,
             string codigoServicoMunicipio, string itemListaServicoLC116,
-            string cnae, string municipioPrestacaoServico)
+            string cnae, string municipioPrestacaoServico, string codigoNbs)
         {
             Descricao = descricao;
             AliquotaIss = aliquotaIss;
@@ -22,7 +23,7 @@
             ItemListaServicoLC116 = itemListaServicoLC116;
             Cnae = cnae;
             MunicipioPrestacaoServico = municipioPrestacaoServico;
-
+            CodigoNbs = codigoNbs;
         }
     }
 }
