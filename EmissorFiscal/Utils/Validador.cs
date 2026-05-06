@@ -39,21 +39,16 @@ namespace EmissorFiscal.Utils
         {
             int num;
 
-
-
             while (true)
             {
-                if (int.TryParse(Console.ReadLine(), out num) && (num == 1 || num == 2 || num == 3 || num == 4))
+                if (int.TryParse(Console.ReadLine(), out num) &&
+                    (num == 1 || num == 2 || num == 3 || num == 4))
                 {
                     return num;
                 }
+
                 Console.WriteLine("Opção inválida, digite 1, 2, 3 ou 4:");
             }
-
-
-
-
-
         }
 
     }
