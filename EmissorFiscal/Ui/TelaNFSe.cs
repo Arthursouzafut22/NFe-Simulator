@@ -51,6 +51,8 @@ namespace EmissorFiscal.Ui
             Console.Write("Digite o valor da prestação do serviço: ");
             decimal valorTotal = decimal.Parse(Console.ReadLine());
 
+            Console.Write("");
+
             Servico = new Servico(
                 descricao,
                 aliquotaIss,
@@ -68,7 +70,8 @@ namespace EmissorFiscal.Ui
             nota.Cliente = telaCliente.Cliente;
             nota.Servico = Servico;
 
-            Console.WriteLine(nota);
+            ConsoleHelper console = new ConsoleHelper();
+            console.ConfirmarEmissao(nota);
         }
     }
 }

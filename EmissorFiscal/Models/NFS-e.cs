@@ -27,7 +27,7 @@ namespace EmissorFiscal.Models
 
         public override void EmitirNota()
         {
-            ToString();
+            Console.WriteLine(ToString());
         }
 
         public override string ToString()

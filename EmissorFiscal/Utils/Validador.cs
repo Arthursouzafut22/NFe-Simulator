@@ -1,4 +1,6 @@
-﻿namespace EmissorFiscal.Utils
+﻿using static System.Net.Mime.MediaTypeNames;
+
+namespace EmissorFiscal.Utils
 {
     class Validador
     {
@@ -32,5 +34,27 @@
 
             return email;
         }
+
+        public static int ValidarMenu()
+        {
+            int num;
+
+
+
+            while (true)
+            {
+                if (int.TryParse(Console.ReadLine(), out num) && (num == 1 || num == 2 || num == 3 || num == 4))
+                {
+                    return num;
+                }
+                Console.WriteLine("Opção inválida, digite 1, 2, 3 ou 4:");
+            }
+
+
+
+
+
+        }
+
     }
 }
