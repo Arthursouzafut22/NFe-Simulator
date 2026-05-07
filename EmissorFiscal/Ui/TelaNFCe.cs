@@ -1,14 +1,20 @@
 ﻿using EmissorFiscal.Models;
+using EmissorFiscal.Utils;
 
 namespace EmissorFiscal.Ui
 {
      class TelaNFCe
     {
+      public  NFCe NFCe { get; set; }
+      public Produto Produto { get; set; }
         public void Executar()
         {
+            NFCe nota = new NFCe();
 
             TelaCliente telaCliente = new TelaCliente();
             telaCliente.ColetarDadosCliente();
+
+            nota.Cliente = telaCliente.Cliente;
 
             Console.WriteLine("");
             Console.Write("Digite a quantidades de produtos: ");
@@ -20,22 +26,22 @@ namespace EmissorFiscal.Ui
                 Console.WriteLine($"...Digite o {i} produto... ");
                 Console.WriteLine("");
                 Console.Write("Digite o nome do produto: ");
-                string nomeProduto = Console.ReadLine();
+                string nomeProduto = Validador.LerCampoObrigatorio();
                 Console.Write("Digite a descrição do produto: ");
-                string descricao = Console.ReadLine();
+                string descricao = Validador.LerCampoObrigatorio();
                 Console.Write("Digite o codigo do produto: ");
-                string codigoProduto = Console.ReadLine();
+                string codigoProduto = Validador.LerCampoObrigatorio();
                 Console.Write("Digite o codigo de barras: ");
-                string codigoDeBarras = Console.ReadLine();
+                string codigoDeBarras = Validador.LerCampoObrigatorio();
                 Console.Write("Digite o NCM do produto: ");
-                string ncm = Console.ReadLine();
+                string ncm = Validador.LerCampoObrigatorio();
                 Console.Write("Digite o preço unitario do produto: ");
                 decimal precoUnitario = decimal.Parse(Console.ReadLine());
                 Console.Write("Digite a quantidade de produto: ");
                 int quantidade = int.Parse(Console.ReadLine());
 
 
-                Produto produto = new Produto(
+                Produto = new Produto(
                     nomeProduto,
                     descricao, 
                     codigoProduto,
@@ -44,10 +50,10 @@ namespace EmissorFiscal.Ui
                     precoUnitario,
                     quantidade);
 
-                NFC_e nfce = new NFC_e();
-
-                nfce.AdicionarProdutos(produto);
+                nota.AdicionarProdutos(Produto);
             }
+
+            ConsoleHelper.ConfirmarEmissao(nota);
         }
     }
 }

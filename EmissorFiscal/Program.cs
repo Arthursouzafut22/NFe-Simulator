@@ -4,7 +4,6 @@ class Program
 {
     public static void Main()
     {
-        MenuPrincipal menu = new MenuPrincipal();
-        menu.Start();
+        MenuPrincipal.Start();
     }
 }

@@ -70,8 +70,8 @@ namespace EmissorFiscal.Ui
             nota.Cliente = telaCliente.Cliente;
             nota.Servico = Servico;
 
-            ConsoleHelper console = new ConsoleHelper();
-            console.ConfirmarEmissao(nota);
+            //ConsoleHelper console = new ConsoleHelper();
+            ConsoleHelper.ConfirmarEmissao(nota);
         }
     }
 }

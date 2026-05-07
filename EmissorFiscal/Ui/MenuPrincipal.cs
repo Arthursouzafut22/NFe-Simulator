@@ -4,7 +4,7 @@ namespace EmissorFiscal.Ui
 {
     class MenuPrincipal
     {
-        public void Start()
+        public static void Start()
         {
             Menu();
             var opcao = Validador.ValidarMenu();
@@ -22,11 +22,11 @@ namespace EmissorFiscal.Ui
                     break;
 
                 case 3:
-                    // "Ainda vou implementar...";
+                    // .........";
                     break;
 
                 case 4:
-                    // "Sair...";
+                    // ".......";
                     break;
 
                 default:
@@ -35,7 +35,7 @@ namespace EmissorFiscal.Ui
             }
         }
 
-        public void Menu()
+        public static void Menu()
         {
             Console.Clear();
             Console.WriteLine("╔══════════════════════════════════╗");

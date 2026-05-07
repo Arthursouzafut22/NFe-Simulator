@@ -8,11 +8,12 @@ namespace EmissorFiscal.Models
         public DateTime DataEmissao { get; set; }
         public Cliente Cliente { get; set; }
         public decimal ValorTotal { get; set; }
+
         public NotaFiscal() { }
         public NotaFiscal(decimal valorTotal)
         {
             DataEmissao = DateTime.Now;
-            NumeroNota = ++_contador;
+            NumeroNota = _contador++;
             ValorTotal = valorTotal;
         }
         public abstract void EmitirNota();

@@ -1,10 +1,11 @@
 ﻿using EmissorFiscal.Models;
+using EmissorFiscal.Ui;
 
 namespace EmissorFiscal.Utils
 {
     class ConsoleHelper
     {
-        public void ConfirmarEmissao(NotaFiscal nota)
+        public static void ConfirmarEmissao(NotaFiscal nota)
         {
             Console.Write("");
             Console.Write("Dessa realizar a emissão? (S/N) ");
@@ -16,10 +17,12 @@ namespace EmissorFiscal.Utils
                     nota.EmitirNota();
                     break;
                 case 'N':
-                    Console.ReadKey();
+                    MenuPrincipal.Start();
+                    break;
+                default:
+                    MenuPrincipal.Start();
                     break;
             }
-
         }
     }
 }
