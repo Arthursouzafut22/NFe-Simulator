@@ -5,14 +5,12 @@ namespace EmissorFiscal.Models
     class NFSe : NotaFiscal
     {
         public Guid Id { get; private set; }
-        public TipoNota Tipo { get; set; }
         public Servico Servico { get; set; }
 
         public NFSe() {}
-        public NFSe(decimal valorTotal) : base(valorTotal)
+        public NFSe(decimal valorTotal, TipoNota tipoNota) : base(tipoNota, valorTotal)
         {
             Id = Guid.NewGuid();
-            Tipo = TipoNota.NFS_e;
         }
 
         public decimal CalcularTotalPisCofins()
@@ -37,6 +35,7 @@ namespace EmissorFiscal.Models
             sb.AppendLine();
             sb.AppendLine("========== NOTA FISCAL DE SERVIÇO ==========");
             sb.AppendLine($"Nº: {NumeroNota}    Data: {DataEmissao:dd/MM/yyyy HH:mm}");
+            sb.AppendLine($"Tipo Nota: {TipoNota}");
             sb.AppendLine($"ID: {Id}");
 
             sb.AppendLine("\n--- DADOS DO TOMADOR ---");

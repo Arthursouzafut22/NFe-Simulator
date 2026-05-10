@@ -7,13 +7,11 @@ namespace EmissorFiscal.Models
     {
 
         public Guid Id { get; }
-        public TipoNota Tipo { get; set; }
         public List<Produto> produtos = new List<Produto>();
 
-        public NFCe()
+        public NFCe(TipoNota tipoNota): base(tipoNota)
         {
             Id = Guid.NewGuid();
-            Tipo = TipoNota.NFC_e;
         }
 
         public void AdicionarProdutos(Produto produto)
@@ -36,6 +34,7 @@ namespace EmissorFiscal.Models
 
             sb.AppendLine($"Número da Nota : {NumeroNota}");
             sb.AppendLine($"Data Emissão   : {DataEmissao:dd/MM/yyyy HH:mm}");
+            sb.AppendLine($"Tipo da Nota   : {TipoNota}");
             sb.AppendLine($"ID da Nota     : {Id}");
 
             sb.AppendLine();

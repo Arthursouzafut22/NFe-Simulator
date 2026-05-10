@@ -1,4 +1,6 @@
-﻿using EmissorFiscal.Models;
+﻿using EmissorFiscal.Enums;
+using EmissorFiscal.Models;
+using EmissorFiscal.Repositories;
 using EmissorFiscal.Utils;
 
 namespace EmissorFiscal.Ui
@@ -9,7 +11,7 @@ namespace EmissorFiscal.Ui
       public Produto Produto { get; set; }
         public void Executar()
         {
-            NFCe nota = new NFCe();
+            NFCe nota = new NFCe(TipoNota.NFC_e);
 
             TelaCliente telaCliente = new TelaCliente();
             telaCliente.ColetarDadosCliente();
@@ -54,6 +56,7 @@ namespace EmissorFiscal.Ui
             }
 
             ConsoleHelper.ConfirmarEmissao(nota);
+            NotaRepository.AdicionarNotas(nota);
         }
     }
 }

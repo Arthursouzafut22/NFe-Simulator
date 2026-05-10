@@ -1,50 +1,49 @@
-﻿using EmissorFiscal.Utils;
+﻿using EmissorFiscal.Enums;
+using EmissorFiscal.Repositories;
+using EmissorFiscal.Utils;
 
 namespace EmissorFiscal.Ui
 {
-    class MenuPrincipal
+    class TelaListaNotas
     {
-        public static void Start()
+        public static void StartMenuListagem()
         {
-            Menu();
+            MenuListagemNotas();
             var opcao = Validador.ValidarMenu();
 
             switch (opcao)
             {
                 case 1:
-                    TelaNFSe telaNFSe = new TelaNFSe();
-                    telaNFSe.Executar();
+                    NotaRepository.ListarNotaPorTipo(TipoNota.NFS_e);
                     break;
 
                 case 2:
-                    TelaNFCe telaNFCe = new TelaNFCe();
-                    telaNFCe.Executar();
+                    NotaRepository.ListarNotaPorTipo(TipoNota.NFC_e);
                     break;
 
                 case 3:
-                    TelaListaNotas.StartMenuListagem();
+                    NotaRepository.ListarNotasEmitidas();
                     break;
-
                 case 4:
-                    // ".......";
+                    MenuPrincipal.Start();
                     break;
 
                 default:
-                    Menu();
+                    MenuPrincipal.Start();
                     break;
             }
         }
 
-        public static void Menu()
+        public static void MenuListagemNotas()
         {
             Console.Clear();
             Console.WriteLine("╔══════════════════════════════════╗");
-            Console.WriteLine("║       EMISSOR FISCAL - v1.0      ║");
+            Console.WriteLine("║        LISTAGEM DE NOTAS         ║");
             Console.WriteLine("╠══════════════════════════════════╣");
-            Console.WriteLine("║ [1] Emitir NFS-e                 ║");
-            Console.WriteLine("║ [2] Emitir NFC-e                 ║");
-            Console.WriteLine("║ [3] Listar notas emitidas        ║");
-            Console.WriteLine("║ [4] Sair                         ║");
+            Console.WriteLine("║ [1] Listar NFS-e                 ║");
+            Console.WriteLine("║ [2] Listar NFC-e                 ║");
+            Console.WriteLine("║ [3] Listar todas                 ║");
+            Console.WriteLine("║ [4] Voltar                       ║");
             Console.WriteLine("╚══════════════════════════════════╝");
         }
     }

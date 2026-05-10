@@ -1,4 +1,6 @@
-﻿using EmissorFiscal.Models;
+﻿using EmissorFiscal.Enums;
+using EmissorFiscal.Models;
+using EmissorFiscal.Repositories;
 using EmissorFiscal.Utils;
 
 namespace EmissorFiscal.Ui
@@ -66,12 +68,12 @@ namespace EmissorFiscal.Ui
                 valorConfins
             );
 
-            NFSe nota = new NFSe(valorTotal);
+            NFSe nota = new NFSe(valorTotal, TipoNota.NFS_e);
             nota.Cliente = telaCliente.Cliente;
             nota.Servico = Servico;
 
-            //ConsoleHelper console = new ConsoleHelper();
             ConsoleHelper.ConfirmarEmissao(nota);
+            NotaRepository.AdicionarNotas(nota);
         }
     }
 }
